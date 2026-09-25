@@ -29,3 +29,39 @@ class Solution{
         return arr;
     }
 };
+
+class Solution{
+    private:
+    void postorder(TreeNode* root,vector<int>& ans){
+        if(!root) return;
+
+        postorder(root->left,ans);
+        postorder(root->right,ans);
+        ans.push_back(root->val);
+    }
+    public:
+    vector<int>postOrderTraversal(TreeNode* root){
+        vector<int>ans;
+        postorder(root,ans);
+        return ans;
+    }
+};
+
+class Solution{
+    private:
+    void inorder(TreeNode* root,vector<int>& ans){
+        if(!root) return;
+
+        inorder(root->left,ans);
+        ans.push_back(root->val);
+        inorder(root->right,ans);
+    }
+    public:
+    vector<int>inOrderTraversal(TreeNode* root){
+        vector<int> ans;
+
+        inorder(root,ans);
+        return ans;
+    }
+
+};
