@@ -152,3 +152,38 @@ class RottenOranges{
         
     }
 };
+
+//Cycle detection in directed graph using BFS(Topo Sort and check if cnt or topo size is equal to total nodes then it has no cycle)
+class Solution{
+    public:
+    bool isCyclic(int V,vector<vector<int>>& edges){
+        vector<vector<int>> adjLs(V);
+        for(auto& e : edges){
+            adjLs[e[0]].push_back(e[1]);
+        }
+        vector<int> indegree(V);
+        for(int i = 0;i<V;i++){
+            for(auto it:adjLs[i]){
+                indegree[it]++;
+            }
+        }
+        queue<int> q;
+        for(int i = 0;i<V;i++){
+            if(indegree[i] == 0) q.push(i);
+        }
+        int cnt = 0;
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+            cnt++;
+
+            for(auto it:adjLs[node]){
+                indegree[it]--;
+                if(indegree[it] == 0) q.push(it);
+            }
+        }
+
+        if(cnt == V) return false;
+        return true;
+    }
+};

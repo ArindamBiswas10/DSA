@@ -83,3 +83,33 @@ vector<int> two_sum(vector<int>arr,int target){
 
    return {-1,-1};
 }
+
+class Solution{
+    vector<int> twoSum(vector<int> arr,int target){
+        unordered_map<int,int> mpp;
+        for(int i = 0;i<arr.size();i++){
+            int compliment = target - arr[i];
+            if(mpp.find(compliment) != mpp.end()){
+                return {mpp[compliment],i};
+            }
+            mpp[arr[i]] = i;
+        }
+
+        return {-1,-1};
+    }
+};
+
+class Solution{
+    public:
+    vector<int> twoSum(vector<int> arr,int target){
+        unordered_map<int,int> mpp;
+        for(int i = 0;i<arr.size();i++){
+            int compliment = target - arr[i];
+            if(mpp.find(compliment) != mpp.end()){
+                return {mpp[compliment],i};
+            }
+            mpp[arr[i]] = i;
+        }
+        return {-1,-1};
+    }
+};
